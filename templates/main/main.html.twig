@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+<div id="navHeadWrapper" class="navHeaderWrapper header-image">
+    <!-- NavBar -->
+    <!-- Brand -->
+    <div class="">
+        <nav class="navbar navbar-expand-lg bg-faded header-nav">
+            <div class="container">
+
+                <div class="col-xl-4 col-lg-3 col-6 mx-auto ">
+                    <a class="navbar-brand" href="#"><h4>Domaine Manager</h4></a>
+                </div>
+
+                <div class="col-6 text-right d-lg-none d-block">
+                    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#nav-content" aria-controls="nav-content" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon flaticon-left-menu"></span>
+                    </button>
+                </div>
+
+                <div class="col-xl-8 col-lg-9">
+                    <!-- Links -->
+                    <div class="collapse navbar-collapse justify-content-end" id="nav-content">   
+                        <ul class="navbar-nav text-center mt-lg-0 mt-5">
+                            <li class="nav-item active">
+                                <a class="nav-link js-scroll-trigger" href="#navHeadWrapper"></a>
+                              </li>
+                              <li class="nav-item">
+                                <a class="nav-link js-scroll-trigger" href="#whyusWrapper"></a>
+                              </li>
+                              
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!-- /NavBar -->
+
+   
+</div>
+
+<!-- Why Choose Us -->
+<div class="container scroll-offset">
+    <div id="whyusWrapper" class="row">
+        <div class="col-md-12 text-center mb-5">				
+            <h2 class="section-title mb-5">PlateForme <br/> De gestion des noms de domaine</h2>
+        </div>
+
+        
+
+        <div class="col-md-12">
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-sketch" role="tabpanel" aria-labelledby="pills-sketch-tab">
+                    <div class="row">
+                        <div class="col-md-6 text-center">
+                            <img alt="image-sample" src="assets/img/header-img-7.png" class="img-fluid">
+                        </div>
+                        <div class="col-md-6 align-self-center">
+                            <h4 class="mb-4">Gestion de nom de domaine</h4>
+                            <p class="">C'est une plateforme permettant la gestion optimale ...</p>
+                            <a class="btn btn-lg btn-outline-dark btn-block btn-rounded mb-3" href="{{ path('security_login')}}">Login</a>
+                            <p>OU</p>
+                            <a href="{{ path('security_register')}}" class="btn btn-lg btn-outline-dark btn-block btn-rounded mb-3">Inscription</a>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Welcome to our agency -->
+
+    
+
+{% endblock %}

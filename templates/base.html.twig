@@ -6,7 +6,28 @@
         {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
         {% block stylesheets %}
-            {#{{ encore_entry_link_tags('app') }}#}
+            
+        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico"/>
+        <!-- BEGIN GLOBAL MANDATORY STYLES -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/plugins.css" rel="stylesheet" type="text/css" />
+        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico"/>
+     	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+        <link href="plugins/sliders/owlCarousel/css/owl.carousel.min.css" rel="stylesheet" type="text/css" />
+        <link href="plugins/sliders/owlCarousel/css/owl.theme.default.min.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" type="text/css" href="plugins/flaticon/style.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/pages/landing-page/style.css">
+        <!-- END GLOBAL MANDATORY STYLES -->
+    
+        <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
+        <link href="plugins/dropzone/dropzone.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/accounting-dashboard/style.css" rel="stylesheet" type="text/css" />
+        <link href="plugins/charts/c3charts/c3.min.css" rel="stylesheet" type="text/css" />   
+        {% endblock %}
+
+        {% block addstylesheet %}
         {% endblock %}
 
         {% block javascripts %}
@@ -14,6 +35,7 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% block body %}
+        {% endblock %}
     </body>
 </html>

@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+{% block addstylesheet %}
+<link href="assets/css/users/login-1.css" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block body %}
+
+
+    <form class="form-login">
+        <a href="{{path('main')}}">Retour à l'accueil</a>
+        <div class="row">
+            <div class="col-md-12 text-center mb-4">
+               <h2>Domaine Manager <br /> Login</h2> 
+            </div>
+
+            <div class="col-md-12">
+                <label for="inputEmail" class="">Username</label>                
+                <input type="email" id="inputEmail" class="form-control mb-4" placeholder="Login" required="">                
+                <label for="inputPassword" class="">Password</label>                
+                <input type="password" id="inputPassword" class="form-control mb-5" placeholder="Password" required="">                
+                <div class="checkbox d-flex justify-content-between mb-4 mt-3">
+                    <div class="forgot-pass">
+                        <a href="">Mot de passe oublié?</a>
+                    </div>
+                </div>                
+                <button class="btn btn-lg btn-gradient-danger btn-block btn-rounded mb-4 mt-5" type="submit">Login</button>
+                <a href="{{ path('security_register')}}" class="btn btn-lg btn-outline-dark btn-block btn-rounded mb-3">Inscription</a>
+            </div>
+            
+    
+        </div>
+    </form>
+
+
+{% endblock %}

@@ -8,6 +8,7 @@
 /public/bundles/
 /var/
 /.git/
+.idea/
 /vendor/
 ###< symfony/framework-bundle ###
 

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -47,9 +49,15 @@ class User implements UserInterface
      */
     private $createdAt;
 
+    /**
+     * @ORM\OneToMany(targetEntity=DomaineName::class, mappedBy="user")
+     */
+    private $domaineNames;
+
     public function __construct()
     {
         $this->roles = ['ROLE_AUTHOR'];
+        $this->domaineNames = new ArrayCollection();
     }
     public function getId(): ?int
     {
@@ -140,6 +148,36 @@ class User implements UserInterface
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|DomaineName[]
+     */
+    public function getDomaineNames(): Collection
+    {
+        return $this->domaineNames;
+    }
+
+    public function addDomaineName(DomaineName $domaineName): self
+    {
+        if (!$this->domaineNames->contains($domaineName)) {
+            $this->domaineNames[] = $domaineName;
+            $domaineName->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDomaineName(DomaineName $domaineName): self
+    {
+        if ($this->domaineNames->removeElement($domaineName)) {
+            // set the owning side to null (unless already changed)
+            if ($domaineName->getUser() === $this) {
+                $domaineName->setUser(null);
+            }
+        }
 
         return $this;
     }

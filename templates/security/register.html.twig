@@ -7,7 +7,7 @@
 {% block body %}
 <body class="register">
 
-        <form class="form-register">
+        <div class="form-register">
             <a href="{{path('main')}}">Retour à l'accueil</a>
             <div class="row">
                 <div class="col-md-12 text-center mb-4">
@@ -19,15 +19,13 @@
                     {{ form_widget(form.email, {'attr':{'placeholder':'Adresse mail ...', 'class':'form-control mb-4'}}) }}
                     <label for="inputPassword" class="">Mot de passe</label>
                     {{ form_widget(form.password, {'attr':{'placeholder':'Mot de passe ...', 'class':'form-control mb-5'}}) }}
-                    <label for="inputRepeatPassword" class="">Repeter mot de passe</label>
-                    <input type="password" id="inputRepeatPassword" class="form-control mb-5" placeholder="Repeat Password" required="">
-                                
+
                     <button class="btn btn-lg btn-gradient-danger btn-block btn-rounded mb-4 mt-5" type="submit">Inscription</button>
                     <a href="{{ path('security_login')}}" class="btn btn-lg btn-outline-dark btn-block btn-rounded mb-3">Login</a>
                 </div>
                 {{ form_end(form) }}
             </div>
-        </form>
+        </div>
 
     </body>
 {% endblock %}

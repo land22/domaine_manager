@@ -47,6 +47,10 @@ class User implements UserInterface
      */
     private $createdAt;
 
+    public function __construct()
+    {
+        $this->roles = ['ROLE_AUTHOR'];
+    }
     public function getId(): ?int
     {
         return $this->id;

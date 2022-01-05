@@ -1,0 +1,56 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Nom de domaine {% endblock %}
+
+{% block body %}
+    <!-- Tab Mobile View Header -->
+
+
+    <div class="statbox widget box box-shadow">
+        <div class="widget-header">
+            <div class="row">
+                <div class="col-xl-10 col-md-10 col-sm-10 col-10">
+                    <h4>Nom de domaine Ajouter</h4>
+                </div>
+                <div class="col-xl-2 col-md-2 col-sm-2 col-2">
+                    <a class="mt-4 btn btn-button-7 btn-rounded" href="{{ path('create_domainName')}}">Ajouter un nom de domaine</a>
+                </div>
+            </div>
+        </div>
+        {% if domainNames is not empty %}
+            <div class="widget-content widget-content-area">
+                <div class="table-responsive">
+                    <table class="table mb-4">
+                        <caption>Liste de tous les sites web que vous avez crée</caption>
+                        <thead>
+                        <tr>
+                            <th class="align-center">Date de création</th>
+                            <th>Url</th>
+                            <th class="align-center">Date d'expiration</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for DomainName in domaineNames %}
+                            <tr>
+                                <td class="align-center">{{ domainName.createdAt | date('d/m/Y') }}</td>
+                                <td>{{ domainName.url }} </td>
+                                <td><ul class="table-controls">
+                                        <li><a href="{{ path('admin_edit_domainName',{id:domainName.id}) }}"  title="" data-original-title="Modifier"><i class="flaticon-edit  bg-success p-1 text-white br-6 mb-1"></i></a></li>
+                                        <li><a href="{{ path('admin_remove_domainName',{id:domainName.id}) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Supprimer"><i class="flaticon-delete  bg-danger p-1 text-white br-6 mb-1"></i></a></li>
+                                    </ul></td>
+                            </tr>
+                        {% endfor %}
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        {% else %}
+            <div class="widget-content widget-content-area text-center">
+                <p class="mb-4 mr-2 btn-rounded btn btn-warning  mixin">Pas de nom de domaine enregistré pour le moment, vous pouvez en créer un, en cliquant sur Ajouter un nom de domaine.</p>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

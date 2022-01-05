@@ -28,7 +28,7 @@ class DomaineName
     private $createdAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity=user::class, inversedBy="domaineNames")
+     * @ORM\ManyToOne(targetEntity=user::class,inversedBy="domaineNames")
      */
     private $user;
 

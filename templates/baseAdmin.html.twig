@@ -110,8 +110,8 @@
                 <li class="menu">
                     <a href="#ecommerce" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <div class="">
-                            <i class="flaticon-cart-2"></i>
-                            <span>Ecommerce</span>
+                            <i class="flaticon-computer-5"></i>
+                            <span>Nom de domaine</span>
                         </div>
                         <div>
                             <i class="flaticon-right-arrow"></i>
@@ -119,21 +119,10 @@
                     </a>
                     <ul class="collapse submenu list-unstyled" id="ecommerce" data-parent="#accordionExample">
                         <li>
-                            <a href="ecommerce_dashboard.html"> Dashboard </a>
+                            <a href="{{ path('admin_list_domainName') }}"> Liste des noms de domaine</a>
                         </li>
-
                         <li>
-                            <a href="#product-details" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"  data-parent="#ecommerce"> Product Details <i class="flaticon-right-arrow"></i> </a>
-                            <ul class="collapse list-unstyled sub-submenu" id="product-details">
-                                <li>
-                                    <a href="ecommerce_product_details_1.html"> Product Details 1 </a>
-                                </li>
-
-                            </ul>
-                        </li>
-
-                        <li>
-                            <a href="ecommerce_products_cart.html"> Products in Cart </a>
+                            <a href="{{ path('create_domainName') }}"> Ajouter un nom de domaine </a>
                         </li>
 
                     </ul>

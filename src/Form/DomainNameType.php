@@ -13,8 +13,6 @@ class DomainNameType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('createdAt')
-            ->add('user')
         ;
     }
 

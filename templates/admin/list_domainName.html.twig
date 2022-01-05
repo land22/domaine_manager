@@ -25,16 +25,17 @@
                         <thead>
                         <tr>
                             <th class="align-center">Date de création</th>
-                            <th>Url</th>
+                            <th>Nom de domaine</th>
                             <th class="align-center">Date d'expiration</th>
                             <th>Actions</th>
                         </tr>
                         </thead>
                         <tbody>
-                        {% for DomainName in domaineNames %}
+                        {% for domainName in domainNames %}
                             <tr>
                                 <td class="align-center">{{ domainName.createdAt | date('d/m/Y') }}</td>
-                                <td>{{ domainName.url }} </td>
+                                <td>{{ domainName.name }} </td>
+                                <td> </td>
                                 <td><ul class="table-controls">
                                         <li><a href="{{ path('admin_edit_domainName',{id:domainName.id}) }}"  title="" data-original-title="Modifier"><i class="flaticon-edit  bg-success p-1 text-white br-6 mb-1"></i></a></li>
                                         <li><a href="{{ path('admin_remove_domainName',{id:domainName.id}) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Supprimer"><i class="flaticon-delete  bg-danger p-1 text-white br-6 mb-1"></i></a></li>

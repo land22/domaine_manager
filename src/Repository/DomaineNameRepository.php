@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\DomaineName;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use App\Entity\user;
 
 /**
  * @method DomaineName|null find($id, $lockMode = null, $lockVersion = null)

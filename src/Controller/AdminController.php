@@ -26,8 +26,6 @@ class AdminController extends AbstractController
      */
     public function liste_domainName(){
         $repos = $this->getDoctrine()->getRepository(DomaineName::class);
-        dump($repos);
-        die();
         $domainName = $repos->findAll();
         return $this->render('admin/list_domainName.html.twig',[
             'domainNames' =>$domainName,
@@ -35,7 +33,7 @@ class AdminController extends AbstractController
     }
     /**
      * @Route ("/admin/create_domainName", name="create_domainName")
-     * @Route("/admin/{id}/edit_domainName",name="edit_domainName")
+     * @Route("/admin/{id}/edit_domainName",name="admin_edit_domainName")
      */
     public function create_edit(DomaineName $domaineName = null, Request $request)
     {

@@ -40,13 +40,18 @@ class AdminController extends AbstractController
         $domainName = $repos->findAll();
         $i = 0;
         $date = [];
-        dump($domainName);
+
        foreach ($domainName as $data){
-           $info = $whois->loadDomainInfo($data->getName());
-            $date[$i]["expiration"] = $info->expirationDate;
-           $date[$i]["creation"] = $info->creationDate;
-           $i++;
+
+               $info = $whois->loadDomainInfo($data->getName());
+
+                $date[$i]["expiration"] = date("Y-m-d", $info->expirationDate);
+               $date[$i]["creation"] = date("Y-m-d", $info->creationDate);
+             $date[$i]["owner"] =  $info->registrar;
+               $i++;
+
        }
+
         return $this->render('admin/list_domainName.html.twig',[
             'domainNames' =>$domainName,
             'dateInfo'=>$date

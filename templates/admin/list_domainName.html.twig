@@ -21,26 +21,31 @@
             <div class="widget-content widget-content-area">
                 <div class="table-responsive">
                     <table class="table mb-4">
-                        <caption>Liste de tous les sites web que vous avez crée</caption>
+                        <caption>Liste de tous les noms de domaine que vous avez crée</caption>
                         <thead>
                         <tr>
+                            <th class="align-center">Date d'insertion</th>
                             <th class="align-center">Date de création</th>
-                            <th>Nom de domaine</th>
                             <th class="align-center">Date d'expiration</th>
+                            <th>Nom de domaine</th>
+
                             <th>Actions</th>
                         </tr>
                         </thead>
                         <tbody>
-                        {% for domainName in domainNames %}
+
+                        {% for key, domainName in domainNames %}
                             <tr>
                                 <td class="align-center">{{ domainName.createdAt | date('d/m/Y') }}</td>
+                                <td>{{ dateInfo[key]['creation']}} </td>
+                                <td>{{ dateInfo[key]['expiration']}} </td>
                                 <td>{{ domainName.name }} </td>
-                                <td> </td>
                                 <td><ul class="table-controls">
                                         <li><a href="{{ path('admin_edit_domainName',{id:domainName.id}) }}"  title="" data-original-title="Modifier"><i class="flaticon-edit  bg-success p-1 text-white br-6 mb-1"></i></a></li>
                                         <li><a href="{{ path('admin_remove_domainName',{id:domainName.id}) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Supprimer"><i class="flaticon-delete  bg-danger p-1 text-white br-6 mb-1"></i></a></li>
                                     </ul></td>
                             </tr>
+
                         {% endfor %}
 
 

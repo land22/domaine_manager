@@ -1,0 +1,68 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block style %}
+    <!-- BEGIN PAGE LEVEL STYLE -->
+    <link href=" {{ asset('plugins/fullcalendar/fullcalendar.css') }}" rel="stylesheet" type="text/css" />
+    <link href=" {{ asset('plugins/fullcalendar/fullcalendar-basic.css') }} " rel="stylesheet" type="text/css" />
+    <!-- END PAGE LEVEL STYLE -->
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+
+        <div class="row layout-spacing" id="cancel-row">
+
+            <div class="col-xl-12 col-lg-12 col-md-12 layout-spacing">
+                <div class="statbox widget box box-shadow">
+                    <div class="widget-content widget-content-area event-calendar">
+                        <div class="js-fc-header">
+                            <h2 class="js-fc-header-title">Domaine name</h2>
+                        </div>
+                        <div id="c" class="fc fc-unthemed fc-ltr">
+                            <div class="fc-toolbar fc-header-toolbar">
+                                <div class="fc-left"><div class="fc-button-group">
+                                        <button type="button" class="fc-prev-button fc-button fc-state-default fc-corner-left"><span class="fc-icon fc-icon-left-single-arrow"></span></button><button type="button" class="fc-next-button fc-button fc-state-default fc-corner-right">
+                                            <span class="fc-icon fc-icon-right-single-arrow">
+
+                                            </span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="fc-right">
+                                    <div class="fc-button-group">
+                                        <button type="button" class="fc-month-button fc-button fc-state-default fc-corner-left fc-state-active">month
+                                        </button>
+                                        <button type="button" class="fc-agendaWeek-button fc-button fc-state-default">week
+                                        </button>
+                                        <button type="button" class="fc-agendaDay-button fc-button fc-state-default fc-corner-right">day
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="fc-center">
+                                    <h2>January 2022</h2>
+                                </div><div class="fc-clear">
+
+                                </div>
+                            </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    {% block javascript %}
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+    <script src="{{ asset('plugins/fullcalendar/moment.min.js') }}"></script>
+    <script src="{{ asset('plugins/scrollbar/jquery.mCustomScrollbar.concat.min.js') }}"></script>
+    <script src="{{ asset('plugins/fullcalendar/fullcalendar.min.js') }}"></script>
+    <!-- END PAGE LEVEL SCRIPTS -->
+
+    <!--  BEGIN CUSTOM SCRIPTS FILE  -->
+    <script src="{{ asset('plugins/fullcalendar/custom-fullcalendar.advance.js') }} "></script>
+    <!--  END CUSTOM SCRIPTS FILE  -->
+
+
+    {% endblock %}
+{% endblock %}

@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\DomainNameType;
 use App\Entity\DomaineName;
-use App\Entity\User;
+use Iodev\Whois\Factory;
 
 class AdminController extends AbstractController
 {
@@ -21,14 +21,35 @@ class AdminController extends AbstractController
 
         ]);
     }
+
+    /**
+     * @Route("/admin/calendar", name="admin_calendar")
+     */
+    public function calendar(): Response
+    {
+        return $this->render('admin/calendar.html.twig', [
+
+        ]);
+    }
     /**
      * @Route("/admin/list_domainName", name="admin_list_domainName")
      */
     public function liste_domainName(){
         $repos = $this->getDoctrine()->getRepository(DomaineName::class);
+        $whois = Factory::get()->createWhois();
         $domainName = $repos->findAll();
+        $i = 0;
+        $date = [];
+        dump($domainName);
+       foreach ($domainName as $data){
+           $info = $whois->loadDomainInfo($data->getName());
+            $date[$i]["expiration"] = $info->expirationDate;
+           $date[$i]["creation"] = $info->creationDate;
+           $i++;
+       }
         return $this->render('admin/list_domainName.html.twig',[
             'domainNames' =>$domainName,
+            'dateInfo'=>$date
         ]);
     }
     /**

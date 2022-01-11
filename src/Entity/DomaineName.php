@@ -32,6 +32,16 @@ class DomaineName
      */
     private $user;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $emailClient;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Hebergement::class, inversedBy="DomaineName")
+     */
+    private $hebergement;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +79,30 @@ class DomaineName
     public function setUser(?user $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getEmailClient(): ?string
+    {
+        return $this->emailClient;
+    }
+
+    public function setEmailClient(?string $emailClient): self
+    {
+        $this->emailClient = $emailClient;
+
+        return $this;
+    }
+
+    public function getHebergement(): ?Hebergement
+    {
+        return $this->hebergement;
+    }
+
+    public function setHebergement(?Hebergement $hebergement): self
+    {
+        $this->hebergement = $hebergement;
 
         return $this;
     }

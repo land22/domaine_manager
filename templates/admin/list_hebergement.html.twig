@@ -1,0 +1,109 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Hébergment {% endblock %}
+
+{% block body %}
+    <!-- Tab Mobile View Header -->
+
+
+    <div class="statbox widget box box-shadow">
+        <div class="widget-header">
+            <div class="row">
+                <div class="col-xl-8 col-md-8 col-sm-8 col-8">
+                    <h4>Hébergement ou nom de domaine  Ajouté</h4>
+                </div>
+                <div class="col-xl-2 col-md-2 col-sm-2 col-2">
+                    <a class="mt-4 btn btn-button-7 btn-rounded" href="{{ path('create_hebergement')}}">Ajouter un hebergement</a>
+                </div>
+                <div class="col-xl-2 col-md-2 col-sm-2 col-2">
+                    <a class="mt-4 btn btn-button-7 btn-rounded" href="{{ path('create_domainName')}}">Ajouter un nom de domaine</a>
+                </div>
+            </div>
+        </div>
+        {% if hebergements is not empty %}
+            <div class="widget-content widget-content-area">
+                <div class="table-responsive">
+                    <table class="table mb-4">
+                        <caption>Liste de tous les hebergement et noms de domaine que vous avez crée</caption>
+                        <thead>
+                        <tr>
+                            <th class="align-center">Nom</th>
+                            <th class="align-center">Date achat</th>
+                            <th class="align-center">Date renouvellement</th>
+                            <th class="align-center">Expiration</th>
+                            <th class="align-center">Hébergeurs</th>
+                            <th class="align-center">Actions</th>
+
+
+
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        {% for key, hebergement in hebergements %}
+                            <tr>
+                                <td class="align-center">{{ hebergement.name }} </td>
+                                <td class="align-center">{{ dateInfo[key]['creation']}} </td>
+                                <td class="align-center">{{ dateInfo[key]['expiration']}} </td>
+                                <td class="align-center">
+                                    {% if date(dateInfo[key]['expiration']) < date('12months', 'Europe/Paris') %}
+                                        <button type="button" class="btn btn-success "></button>
+
+                                    {% elseif date(dateInfo[key]['expiration']) < date('11months', 'Europe/Paris') %}
+                                        <button type="button" class="btn btn-warning "></button>
+                                    {% elseif date(dateInfo[key]['expiration']) < date('4months', 'Europe/Paris') %}
+                                        <button type="button" class="btn btn-danger"></button>
+                                    {% endif %}
+
+                                </td>
+                                <td class="align-center">{{ dateInfo[key]['owner']}} </td>
+                                <td class="align-center"><ul class="table-controls">
+                                        <li><a href="{{ path('admin_edit_hebergement',{id:hebergement.id}) }}"  title="" data-original-title="Modifier"><i class="flaticon-edit  bg-success p-1 text-white br-6 mb-1"></i></a></li>
+                                        <li><a href="{{ path('admin_remove_hebergement',{id:hebergement.id}) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Supprimer"><i class="flaticon-delete  bg-danger p-1 text-white br-6 mb-1"></i></a></li>
+                                    </ul></td>
+                            </tr>
+
+                            {% for key, domainName in hebergement.DomaineName %}
+                                <tr>
+                                    <td class="align-center">{{ domainName.name }} </td>
+                                    <td class="align-center">{{ dateInfo[key][key]['creation']}} </td>
+                                    <td class="align-center">{{ dateInfo[key][key]['expiration']}} </td>
+                                    <td class="align-center">
+                                        {% if date(dateInfo[key][key]['expiration']) < date('12months', 'Europe/Paris') %}
+                                            <button type="button" class="btn btn-success "></button>
+
+                                        {% elseif date(dateInfo[key][key]['expiration']) < date('11months', 'Europe/Paris') %}
+                                            <button type="button" class="btn btn-warning "></button>
+                                        {% elseif date(dateInfo[key][key]['expiration']) < date('4months', 'Europe/Paris') %}
+                                            <button type="button" class="btn btn-danger"></button>
+                                        {% endif %}
+
+                                    </td>
+                                    <td class="align-center">{{ dateInfo[key][key]['owner']}} </td>
+                                    <td class="align-center"><ul class="table-controls">
+                                            <li><a href="{{ path('admin_edit_domainName',{id:domainName.id}) }}"  title="" data-original-title="Modifier"><i class="flaticon-edit  bg-success p-1 text-white br-6 mb-1"></i></a></li>
+                                            <li><a href="{{ path('admin_remove_domainName',{id:domainName.id}) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Supprimer"><i class="flaticon-delete  bg-danger p-1 text-white br-6 mb-1"></i></a></li>
+                                        </ul></td>
+                                </tr>
+
+
+
+                            {% endfor %}
+
+
+
+
+                        {% endfor %}
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        {% else %}
+            <div class="widget-content widget-content-area text-center">
+                <p class="mb-4 mr-2 btn-rounded btn btn-warning  mixin">Pas d'hébergement ou nom de domaine enregistré pour le moment, vous pouvez en créer un, en cliquant sur Ajouter un nom de domaine.</p>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

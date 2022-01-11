@@ -39,9 +39,18 @@ class Hebergement
      */
     private $DomaineName;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="hebergements")
+     */
+    private $user;
+
     public function __construct()
     {
         $this->DomaineName = new ArrayCollection();
+    }
+    public function __toString()
+    {
+        return $this->name;
     }
 
     public function getId(): ?int
@@ -111,6 +120,18 @@ class Hebergement
                 $domaineName->setHebergement(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

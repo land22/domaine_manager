@@ -1,0 +1,35 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Hébergement {% endblock %}
+
+
+
+{% block body %}
+    <!-- Tab Mobile View Header -->
+
+    <div class="widget-content widget-content-area">
+        <h1>{% if editMode %}
+                Modifier l'hébergement
+            {% else %}
+                Créer un hébergement
+            {% endif %} </h1>
+        {{form_start(formHebergement) }}
+        <div class="form-group">
+            {{ form_row(formHebergement.name,{'label':'Nom de l\'hébergment', 'attr':{'class':'form-control'}})}}
+        </div>
+        <div class="form-group">
+            {{ form_row(formHebergement.emailClient,{'label':'Email du client', 'attr':{'class':'form-control'}})}}
+        </div>
+        <button type="submit" class="mb-4 btn btn-button-7">
+            {% if editMode %}
+                Enregistrer
+            {% else %}
+                Ajouter l'hébergement
+            {% endif %}
+        </button>
+        {{form_end(formHebergement) }}
+    </div>
+
+
+
+{% endblock %}

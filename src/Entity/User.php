@@ -54,10 +54,16 @@ class User implements UserInterface
      */
     private $domaineNames;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Hebergement::class, mappedBy="user")
+     */
+    private $hebergements;
+
     public function __construct()
     {
         $this->roles = ['ROLE_AUTHOR'];
         $this->domaineNames = new ArrayCollection();
+        $this->hebergements = new ArrayCollection();
     }
     public function getId(): ?int
     {
@@ -176,6 +182,36 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($domaineName->getUser() === $this) {
                 $domaineName->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Hebergement[]
+     */
+    public function getHebergements(): Collection
+    {
+        return $this->hebergements;
+    }
+
+    public function addHebergement(Hebergement $hebergement): self
+    {
+        if (!$this->hebergements->contains($hebergement)) {
+            $this->hebergements[] = $hebergement;
+            $hebergement->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeHebergement(Hebergement $hebergement): self
+    {
+        if ($this->hebergements->removeElement($hebergement)) {
+            // set the owning side to null (unless already changed)
+            if ($hebergement->getUser() === $this) {
+                $hebergement->setUser(null);
             }
         }
 

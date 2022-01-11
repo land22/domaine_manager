@@ -13,6 +13,8 @@ class DomainNameType extends AbstractType
     {
         $builder
             ->add('name')
+            ->add('emailClient')
+            ->add('hebergement')
         ;
     }
 

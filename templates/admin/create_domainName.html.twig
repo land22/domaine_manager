@@ -8,10 +8,20 @@
     <!-- Tab Mobile View Header -->
 
     <div class="widget-content widget-content-area">
-        <h1>Creation du nom de domaine </h1>
+        <h1>{% if editMode %}
+                Modifier le nom de domaine
+            {% else %}
+                Créer un nom de domaine
+            {% endif %} </h1> <a href="{{ path('create_hebergement') }}" class="mb-4 btn btn-button-7">Ajouter un hébergement</a>
         {{form_start(formDomainName) }}
         <div class="form-group">
             {{ form_row(formDomainName.name,{'label':'Nom de domaine', 'attr':{'class':'form-control'}})}}
+        </div>
+        <div class="form-group">
+            {{ form_row(formDomainName.emailClient,{'label':'Email du client', 'attr':{'class':'form-control'}})}}
+        </div>
+        <div class="form-group">
+            {{ form_row(formDomainName.hebergement,{'label':'Hébergement correspondant', 'attr':{'class':'form-control'}})}}
         </div>
         <button type="submit" class="mb-4 btn btn-button-7">
             {% if editMode %}

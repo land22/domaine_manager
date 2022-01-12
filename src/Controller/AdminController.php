@@ -166,7 +166,7 @@ class AdminController extends AbstractController
         $entityManager->remove($hebergement);
         $entityManager->flush();
 
-        return $this->redirectToRoute('admin_list_hebergement');
+        return $this->redirectToRoute('admin_list_domainName');
 
     }
 }

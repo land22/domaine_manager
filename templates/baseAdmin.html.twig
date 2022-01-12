@@ -109,23 +109,24 @@
                     </ul>
                 </li>
                 <li class="menu">
-                    {% block menu %} {% endblock %}
-                    <a href="#ecommerce" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="{{ path('admin_list_domainName') }}"   class="dropdown-toggle">
                         <div class="">
-                            <i class="flaticon-computer-5"></i>
-                            <span>Nom de domaine </span>
+                            <i class="flaticon-computer-10"></i>
+                            <span>Hébergement</span>
+                        </div>
+                    </a>
+                    {% block menu %} {% endblock %}
+                    <a href="#calendar" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <div class="">
+                            <i class="flaticon-calendar-1"></i>
+                            <span>Calendrier</span>
                         </div>
                         <div>
                             <i class="flaticon-right-arrow"></i>
                         </div>
                     </a>
-                    <ul class="collapse submenu list-unstyled" id="ecommerce" data-parent="#accordionExample">
-                        <li>
-                            <a href="{{ path('admin_list_domainName') }}"> Liste des noms de domaine</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('create_domainName') }}"> Ajouter un nom de domaine </a>
-                        </li>
+                    <ul class="collapse submenu list-unstyled" id="calendar" data-parent="#accordionExample">
+
                         <li>
                             <a href="{{ path('admin_calendar') }}"> Calendrier </a>
                         </li>

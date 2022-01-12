@@ -2,6 +2,32 @@
 
 {% block title %}Hébergment {% endblock %}
 
+
+
+{% block menu %}
+    {% for key, hebergement in hebergements %}
+    <a href="#ecommerce{{ key }}" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+    <div class="">
+        <i class="flaticon-computer-5"></i>
+       <span>{{ hebergement.name }} </span>
+    </div>
+    <div>
+        <i class="flaticon-right-arrow"></i>
+    </div>
+    </a>
+        <ul class="collapse submenu list-unstyled" id="ecommerce{{ key }}" data-parent="#accordionExample">
+          {% for domainName in hebergement.domaineName %}
+            <li>
+                <a href="{{ path('admin_list_domainName') }}"> {{ domainName.name }} </a>
+            </li>
+            {% endfor %}
+
+        </ul>
+    {% endfor %}
+
+{% endblock %}
+
+
 {% block body %}
     <!-- Tab Mobile View Header -->
 

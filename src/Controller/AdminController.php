@@ -38,35 +38,43 @@ class AdminController extends AbstractController
      * @Security("is_granted('ROLE_AUTHOR')")
      * @Route("/admin/list_domainName", name="admin_list_domainName")
      */
-    public function liste_domainName(){
-        $repos = $this->getDoctrine()->getRepository(Hebergement::class);
+    public function listeDomainName(){
+        $repos = $this->getDoctrine()->getRepository(DomaineName::class);
+        $reposH = $this->getDoctrine()->getRepository(Hebergement::class);
         $whois = Factory::get()->createWhois();
-        $hebergement = $repos->findAll();
+        $domaineName = $repos->findAll();
+        $hebergement = $reposH->findAll();
         $i = 0;
         $j = 0;
         $date = [];
-
-       foreach ($hebergement as $data){
-
-               $info = $whois->loadDomainInfo($data->getName());
-
-                $date[$i]["expiration"] = date("Y-m-d", $info->expirationDate);
-               $date[$i]["creation"] = date("Y-m-d", $info->creationDate);
-             $date[$i]["owner"] =  $info->registrar;
-              foreach ($data->getDomaineName() as $dd){
+        
+        
+       foreach ($domaineName as $data){
+        
+              $info = $whois->loadDomainInfo($data->getName());               
+              $date[$i]["expiration"] = date("Y-m-d", $info->expirationDate) ;
+              $date[$i]["creation"] = date("Y-m-d", $info->creationDate);
+              $date[$i]["owner"] =  $info->registrar;
+              
+              /*foreach ($data->getDomaineName() as $dd) {
                   $infodd = $whois->loadDomainInfo($dd->getName());
-                  $date[$i][$j]["expiration"] = date("Y-m-d", $infodd->expirationDate);
-                  $date[$i][$j]["creation"] = date("Y-m-d", $infodd->creationDate);
+                 
+                 $date[$i][$j]["expiration"] = date("Y-m-d", $infodd->expirationDate);
+                $date[$i][$j]["creation"] = date("Y-m-d", $infodd->creationDate);
                   $date[$i][$j]["owner"] =  $infodd->registrar;
                   $j++;
-              }
-               $i++;
+              }*/
+              $i++;
+         
+       } // end foreach
 
+       dump($date);
+       
 
-       }
 
         return $this->render('admin/list_hebergement.html.twig',[
             'hebergements' =>$hebergement,
+            'domaineNames' =>$domaineName,
             'dateInfo'=>$date
         ]);
     }
@@ -75,7 +83,7 @@ class AdminController extends AbstractController
      * @Route ("/admin/create_domainName", name="create_domainName")
      * @Route("/admin/{id}/edit_domainName",name="admin_edit_domainName")
      */
-    public function create_edit(DomaineName $domaineName = null, Request $request)
+    public function createEdit(DomaineName $domaineName = null, Request $request)
     {
         if(!$domaineName){
             $domaineName = new DomaineName();
@@ -102,7 +110,7 @@ class AdminController extends AbstractController
      * @Security("is_granted('ROLE_AUTHOR')")
      * @Route("/admin/remove_domainName/{id}", name="admin_remove_domainName")
      */
-    public function remove_domainName(int $id){
+    public function removeDomainName(int $id){
         $entityManager = $this->getDoctrine()->getManager();
         $domainName = $entityManager->getRepository(DomaineName::class)->find($id);
 
@@ -126,7 +134,7 @@ class AdminController extends AbstractController
      * @Route ("/admin/create_hebergement", name="create_hebergement")
      * @Route("/admin/{id}/edit_hbergement",name="admin_edit_hebergement")
      */
-    public function create_hebergement(Hebergement $hebergement = null, Request $request)
+    public function createHebergement(Hebergement $hebergement = null, Request $request)
     {
         if(!$hebergement){
             $hebergement = new Hebergement();
@@ -141,7 +149,7 @@ class AdminController extends AbstractController
             $hebergement->setUser($this->getUser());
             $manager->persist($hebergement);
             $manager->flush();
-            return $this->redirectToRoute('admin_list_hebergement');
+            return $this->redirectToRoute('admin_list_domainName');
         }
         return $this->render('admin/create_hebergement.html.twig',[
             'formHebergement' => $form->createView(),
@@ -153,7 +161,7 @@ class AdminController extends AbstractController
      * @Security("is_granted('ROLE_AUTHOR')")
      * @Route("/admin/remove_hebergement/{id}", name="admin_remove_hebergement")
      */
-    public function remove_hebergement(int $id){
+    public function removeHebergement(int $id){
         $entityManager = $this->getDoctrine()->getManager();
         $hebergement = $entityManager->getRepository(Hebergement::class)->find($id);
 

@@ -49,6 +49,9 @@ class AdminController extends AbstractController
         $date = [];
         
         
+
+        
+        
        foreach ($domaineName as $data){
         
               $info = $whois->loadDomainInfo($data->getName());               
@@ -67,8 +70,8 @@ class AdminController extends AbstractController
               $i++;
          
        } // end foreach
-
-       dump($date);
+          
+       
        
 
 

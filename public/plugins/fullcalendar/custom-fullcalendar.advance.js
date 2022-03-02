@@ -128,55 +128,13 @@ $(document).ready(function() {
         eventLimit: true,
         dayNamesShort: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
         timeFormat: "hh:mm a",
-        events: [{
+        events: [
+            {
             title: "Meeting with James",
             start: "2019-01-28",
             className: "fc-event--orange",
             allDay: !0
-        }, {
-            // title: "New branding launch",
-            // start: "2019-01-24",
-            // end: "2019-01-26",
-            // allDay: !0
-            title: 'All Day Event',
-            start: new Date(y, m, d - 12),
-            className: "fc-event--green",
-            // backgroundColor: 'rgba(38, 180, 255, 0.5)'
-        }, {
-            title: "Deliver new product",
-            start: new Date(y, m, d - 30),
-            className: "fc-event--blue"
-        }, {
-            title: "Meeting with CEO",
-            start: new Date(y, m, d - 3, 14, 30),
-            className: "fc-event--green",
-            // allDay: !0
-        }, {
-            title: "Julia's birthday",
-            start: new Date(y, m, d - 2, 7, 0),
-            className: "fc-event--green"
-        }, {
-            title: "New job interview",
-            start: new Date(y, m, d + 21),
-            end: new Date(y, m, d + 7),
-            className: "fc-event--orange",
-            // allDay: !0
-        }, {
-            title: "Custom design",
-            start: new Date(y, m, d + 1, 16, 0),
-            className: "fc-event--green",
-            // allDay: !0
-        }, {
-            title: "Buy New iPhone",
-            start: new Date(y, m, d + 15),
-            className: "fc-event--blue"
-        }, {
-            title: "Travel to Canada",
-            start: new Date(y, m, d - 8),
-            end: new Date(y, m, d - 5),
-            className: "fc-event--green",
-            // allDay: !0
-        }, {
+           },   {
             title: "Agency brainstorming",
             start: new Date(y, m, d + 13),
             className: "fc-event--green"

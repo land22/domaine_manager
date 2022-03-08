@@ -33,8 +33,22 @@
 
 
     <div class="statbox widget box box-shadow">
+        
+            {% for label, messages in app.flashes(['notice_domaineName', 'notice_hebergement']) %}
+            {% for message in messages %}
+            <blockquote class="blockquote">
+             <p>
+                <div class="flash-{{ label }}">
+                    {{ message }}
+                </div>
+             </p>
+             </blockquote>
+            {% endfor %}
+        {% endfor %}
+      
         <div class="widget-header">
             <div class="row">
+            
                 <div class="col-xl-8 col-md-8 col-sm-8 col-8">
                     <h4> Nom de domaine  Ajouté</h4>
                 </div>
@@ -103,7 +117,7 @@
             </div>
         {% else %}
             <div class="widget-content widget-content-area text-center">
-                <p class="mb-4 mr-2 btn-rounded btn btn-warning  mixin">Nom de domaine enregistré pour le moment, vous pouvez en créer un, en cliquant sur Ajouter un nom de domaine.</p>
+                <p class="mb-4 mr-2 btn-rounded btn btn-warning  mixin">Pas de nom de domaine enregistré pour le moment, vous pouvez en créer un, en cliquant sur Ajouter un nom de domaine.</p>
             </div>
         {% endif %}
     </div>

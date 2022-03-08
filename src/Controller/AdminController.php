@@ -67,15 +67,11 @@ class AdminController extends AbstractController
         $repos = $this->getDoctrine()->getRepository(DomaineName::class);
         $reposH = $this->getDoctrine()->getRepository(Hebergement::class);
         $whois = Factory::get()->createWhois();
-        $domaineName = $repos->findAll();
-        $hebergement = $reposH->findAll();
+        $domaineName = $repos->findBy([],['name'=>'ASC']);
+        $hebergement = $reposH->findBy([],['name'=>'ASC']);
         $i = 0;
         $date = [];
-        
-        
-
-        
-        
+             
        foreach ($domaineName as $data){
         
               $info = $whois->loadDomainInfo($data->getName()); 
@@ -132,6 +128,7 @@ class AdminController extends AbstractController
             $domaineName->setUser($this->getUser());
             $manager->persist($domaineName);
             $manager->flush();
+            $this->addFlash('notice_domaineName','Enregistrement effectué avec success !');
             return $this->redirectToRoute('admin_list_domainName');
         }
         return $this->render('admin/create_domainName.html.twig',[
@@ -183,6 +180,7 @@ class AdminController extends AbstractController
             $hebergement->setUser($this->getUser());
             $manager->persist($hebergement);
             $manager->flush();
+            $this->addFlash('notice_hebergement','Enregistrement effectué avec success !');
             return $this->redirectToRoute('admin_list_domainName');
         }
         return $this->render('admin/create_hebergement.html.twig',[

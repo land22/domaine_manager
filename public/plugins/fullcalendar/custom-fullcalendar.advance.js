@@ -128,13 +128,18 @@ $(document).ready(function() {
         eventLimit: true,
         dayNamesShort: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
         timeFormat: "hh:mm a",
-        events: [
-            {
+        events: [{
             title: "Meeting with James",
             start: "2019-01-28",
             className: "fc-event--orange",
             allDay: !0
-           },   {
+        },  {
+            title: "Travel to Canada",
+            start: new Date(y, m, d - 8),
+            end: new Date(y, m, d - 5),
+            className: "fc-event--green",
+            // allDay: !0
+        }, {
             title: "Agency brainstorming",
             start: new Date(y, m, d + 13),
             className: "fc-event--green"

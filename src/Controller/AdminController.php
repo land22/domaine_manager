@@ -30,8 +30,33 @@ class AdminController extends AbstractController
      */
     public function calendar(): Response
     {
-        return $this->render('admin/calendar.html.twig', [
+        $repos = $this->getDoctrine()->getRepository(DomaineName::class);
+        $whois = Factory::get()->createWhois();
+        $domaineName = $repos->findAll();
+        $i = 0;
+        $date = [];
+        foreach ($domaineName as $data){
+        
+            $info = $whois->loadDomainInfo($data->getName());               
+            $date[$i]["expiration"] = date("Y-m-d", $info->expirationDate) ;
+            $date[$i]["creation"] = date("Y-m-d", $info->creationDate);
+            
+            /*foreach ($data->getDomaineName() as $dd) {
+                $infodd = $whois->loadDomainInfo($dd->getName());
+               
+               $date[$i][$j]["expiration"] = date("Y-m-d", $infodd->expirationDate);
+              $date[$i][$j]["creation"] = date("Y-m-d", $infodd->creationDate);
+                $date[$i][$j]["owner"] =  $infodd->registrar;
+                $j++;
+            }*/
+            $i++;
+       
+     } // end foreach
+        
 
+        return $this->render('admin/calendar.html.twig', [
+            'dateInfo'=>$date,
+            'domaineNames' =>$domaineName,
         ]);
     }
     /**
@@ -45,7 +70,6 @@ class AdminController extends AbstractController
         $domaineName = $repos->findAll();
         $hebergement = $reposH->findAll();
         $i = 0;
-        $j = 0;
         $date = [];
         
         
@@ -54,27 +78,34 @@ class AdminController extends AbstractController
         
        foreach ($domaineName as $data){
         
-              $info = $whois->loadDomainInfo($data->getName());               
-              $date[$i]["expiration"] = date("Y-m-d", $info->expirationDate) ;
-              $date[$i]["creation"] = date("Y-m-d", $info->creationDate);
-              $date[$i]["owner"] =  $info->registrar;
+              $info = $whois->loadDomainInfo($data->getName()); 
               
-              /*foreach ($data->getDomaineName() as $dd) {
-                  $infodd = $whois->loadDomainInfo($dd->getName());
-                 
-                 $date[$i][$j]["expiration"] = date("Y-m-d", $infodd->expirationDate);
-                $date[$i][$j]["creation"] = date("Y-m-d", $infodd->creationDate);
-                  $date[$i][$j]["owner"] =  $infodd->registrar;
-                  $j++;
-              }*/
+              if($info){
+                $date[$i]["expiration"] = date("Y-m-d", $info->expirationDate) ;
+                $date[$i]["creation"] = date("Y-m-d", $info->creationDate);
+                $date[$i]["owner"] =  substr($info->nameServers[0],4);
+                
+                /*foreach ($data->getDomaineName() as $dd) {
+                    $infodd = $whois->loadDomainInfo($dd->getName());
+                   
+                   $date[$i][$j]["expiration"] = date("Y-m-d", $infodd->expirationDate);
+                  $date[$i][$j]["creation"] = date("Y-m-d", $infodd->creationDate);
+                    $date[$i][$j]["owner"] =  $infodd->registrar;
+                    $j++;
+                }*/
+
+              }
+              else {
+                $date[$i]["expiration"] = "00/00/00" ;
+                $date[$i]["creation"] = "00/00/00";
+                $date[$i]["owner"] =  'NO DATA AVAIBLE';
+              }
+                            
+             
               $i++;
          
        } // end foreach
           
-       
-       
-
-
         return $this->render('admin/list_hebergement.html.twig',[
             'hebergements' =>$hebergement,
             'domaineNames' =>$domaineName,

@@ -63,8 +63,9 @@
                             <p class="">C'est une plateforme permettant la gestion optimale ...</p>
                             {% if not app.user %}
                             <a class="btn btn-lg btn-outline-dark btn-block btn-rounded mb-3" href="{{ path('security_login')}}">Login</a>
-                            <p>OU</p>
+                            <!-- <p>OU</p>
                             <a href="{{ path('security_register')}}" class="btn btn-lg btn-outline-dark btn-block btn-rounded mb-3">Inscription</a>
+                            -->
                             {% else %}
                             <a href="{{ path('admin_dashbord') }}" class="btn btn-lg btn-outline-dark btn-block btn-rounded mb-3" >Administration</a>
                             <p>OU</p>

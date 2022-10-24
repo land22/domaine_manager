@@ -98,6 +98,7 @@
                                     
                                         {% elseif  leftDays > 181 %}
                                             <button type="button" class="btn btn-success "></button>
+
                                         
                                         
                                         {% endif %}
@@ -107,6 +108,7 @@
                                 <td class="align-center">{{ dateInfo[key]['owner']}} </td>
                                 <td class="align-center"><ul class="table-controls">
                                         <li><a href="{{ path('admin_edit_domainName',{id:domaineName.id}) }}"  title="" data-original-title="Modifier"><i class="flaticon-edit  bg-success p-1 text-white br-6 mb-1"></i></a></li>
+                                        <li><a href=""  title="" data-original-title="Envoyé mail"><i class="flaticon-airplane49 bg-success p-1 text-white br-6 mb-1">mail</i></a></li>
                                         <li><a href="{{ path('admin_remove_domainName',{id:domaineName.id}) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Supprimer"><i class="flaticon-delete  bg-danger p-1 text-white br-6 mb-1"></i></a></li>
                                     </ul></td>
                             </tr>

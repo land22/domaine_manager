@@ -71,13 +71,15 @@ class AdminController extends AbstractController
         $hebergement = $reposH->findBy([],['name'=>'ASC']);
         $i = 0;
         $date = [];
-             
+        
        foreach ($domaineName as $data){
         
               $info = $whois->loadDomainInfo($data->getName()); 
               
               if($info){
-                $date[$i]["expiration"] = date("Y-m-d", $info->expirationDate) ;
+                #$current_date = new \DateTime('now');
+                #$end = new \DateTime(date("Y-m-d",$info->expirationDate)) ;
+                $date[$i]["expiration"] = date("Y-m-d", $info->expirationDate);
                 $date[$i]["creation"] = date("Y-m-d", $info->creationDate);
                 $date[$i]["owner"] =  substr($info->nameServers[0],4);
                 
@@ -101,7 +103,7 @@ class AdminController extends AbstractController
               $i++;
          
        } // end foreach
-          
+
         return $this->render('admin/list_hebergement.html.twig',[
             'hebergements' =>$hebergement,
             'domaineNames' =>$domaineName,
@@ -207,6 +209,29 @@ class AdminController extends AbstractController
         $entityManager->flush();
 
         return $this->redirectToRoute('admin_list_domainName');
+
+    }
+
+    /**
+     * @Security("is_granted('ROLE_AUTHOR')")
+     * @Route("/admin/details_domaine/{id}", name="admin_details_domaine")
+     */
+    public function detailsDomaine(int $id){
+        $entityManager = $this->getDoctrine()->getManager();
+        $domaine = $entityManager->getRepository(DomaineName::class)->find($id);
+
+        if (!$domaine) {
+            throw $this->createNotFoundException(
+                'Pas de nom de domaine avec ce  '.$id
+            );
+        }
+
+        
+
+        return $this->render('admin/details_domaine.html.twig',[
+            'formHebergement' => '',
+            'editMode' => ''
+        ]);
 
     }
 }

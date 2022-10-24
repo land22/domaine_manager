@@ -18,7 +18,7 @@
         <ul class="collapse submenu list-unstyled" id="ecommerce{{ key }}" data-parent="#accordionExample">
           {% for domainName in hebergement.domaineName %}
             <li>
-                <a href="{{ path('admin_list_domainName') }}"> {{ domainName.name }} </a>
+                <a href="{{ path('admin_details_domaine',{id:domainName.id}) }}"> {{ domainName.name }} </a>
             </li>
             {% endfor %}
 
@@ -87,14 +87,19 @@
                                     <td class="align-center">{{ dateInfo[key]['creation']}} </td>
                                     <td class="align-center">{{ dateInfo[key]['expiration']}} </td>
                                     <td class="align-center">
-                                    
-                                        {% if date(dateInfo[key]['expiration']) >= date('12months', 'Europe/Paris') %}
-                                            <button type="button" class="btn btn-success "></button>
-                                          
-                                        {% elseif date(dateInfo[key]['expiration']) < date('11months', 'Europe/Paris') and date(dateInfo[key]['expiration']) >= date('4months', 'Europe/Paris') %}
-                                            <button type="button" class="btn btn-warning "></button>
-                                        {% elseif date(dateInfo[key]['expiration']) < date('4months', 'Europe/Paris') %}
+                                         {% set difference = date(dateInfo[key]['expiration']).diff(date('now')) %}
+                                         {% set leftDays = difference.days %}
+
+                                        {% if leftDays <= 120 %}
                                             <button type="button" class="btn btn-danger"></button>
+
+                                        {% elseif leftDays > 121 and leftDays <= 180 %} 
+                                            <button type="button" class="btn btn-warning "></button>
+                                    
+                                        {% elseif  leftDays > 181 %}
+                                            <button type="button" class="btn btn-success "></button>
+                                        
+                                        
                                         {% endif %}
                                         {% endif %}
 

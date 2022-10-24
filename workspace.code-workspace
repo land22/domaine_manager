@@ -1,0 +1,38 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../redacwp"
+		},
+		{
+			"path": "../jefaismapub"
+		},
+		{
+			"path": "../newVue"
+		},
+		{
+			"path": "../vue3"
+		},
+		{
+			"path": "../narguifive"
+		},
+		{
+			"path": "../html/vide-grenier-en-ligne"
+		},
+		{
+			"path": "../stream_cine"
+		},
+		{
+			"path": "../app_biere"
+		},
+		{
+			"path": "../../../home/wlandry/PycharmProjects/environement"
+		},
+		{
+			"path": "../../../home/wlandry/PycharmProjects/kivy-test"
+		}
+	],
+	"settings": {}
+}

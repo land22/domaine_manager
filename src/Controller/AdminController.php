@@ -12,6 +12,8 @@ use App\Entity\DomaineName;
 use App\Entity\Hebergement;
 use Iodev\Whois\Factory;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 
 class AdminController extends AbstractController
 {
@@ -233,5 +235,21 @@ class AdminController extends AbstractController
             'editMode' => ''
         ]);
 
+    }
+
+    /**
+     * @Security("is_granted('ROLE_AUTHOR')")
+     * @Route("/admin/send_mail", name="admin_send_mail")
+     */
+    public function send_mail(MailerInterface $mailer): Response{
+        $email = (new Email())
+            ->from('landrywabo8@gmail.com')
+            ->to('landrywabo8@gmail.com')
+            ->subject('Notification depuis domaine manager!')
+            ->text('Info pour vous!')
+            ->html('<p>Veuillez verifier la validité de vos noms de domaine sur l\'application!</p>');
+
+        $mailer->send($email);
+        return $this->redirectToRoute('admin_list_domainName');
     }
 }

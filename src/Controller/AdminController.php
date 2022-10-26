@@ -73,7 +73,6 @@ class AdminController extends AbstractController
         $hebergement = $reposH->findBy([],['name'=>'ASC']);
         $i = 0;
         $date = [];
-        
        foreach ($domaineName as $data){
         
               $info = $whois->loadDomainInfo($data->getName()); 
